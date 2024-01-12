@@ -1,34 +1,34 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Logo from "../assets/Logo.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function Navbar({ login, setLogin }) {
+export default function Navbar({login, setLogin }) {
   return (
-    <div>
+    <div className="navbar">
       <Link to="/">
         <img src={Logo}></img>
       </Link>
 
       <nav>
-        <ul>
+        <ul className="nav-desc">
           <li>
-            <Link to="/">Home</Link>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <NavLink to="/about">About</NavLink>
           </li>
           <li>
-            <Link to="/contact">Contact</Link>
+            <NavLink to="/contact">Contact</NavLink>
           </li>
         </ul>
       </nav>
 
-      <div>
+      <div className="nav-button">
         {!login && (
           <Link to="/login">
-            <button>Login</button>
+            <button >Login</button>
           </Link>
         )}
 

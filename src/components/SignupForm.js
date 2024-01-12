@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
-import {toast} from "react-hot-toast"
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from 'react-router-dom';
 
 
-export default function SignupForm() {
+export default function SignupForm({setLogin}) {
+    const navigate=useNavigate();
     const [formdata, setformData] = useState({
         first_name: "",
         last_name: "",
@@ -17,22 +20,37 @@ export default function SignupForm() {
         }))
 
     }
-    const[passdata, setPassdata]=useState("false")
+    const[passdata, setPassdata]=useState(false)
     function changepassValue(){
-        if(passdata==false){
+        if(passdata===false){
             setPassdata(true)
         }
         else{
             setPassdata(false)
         }
     }
+    function signupHandler(event){
+        event.preventDefault();
+        if(formdata.password!==formdata.confirmpassword)
+        {
+            toast.error("password doesnot match");
+        }
+        else
+            {setLogin(true);
+            toast.success("Account Created Successfully");
+
+            console.log(formdata);
+            navigate("/dashboard");}
+
+    }
   return (
     <div>
+            {/* <h1 style="background=black">i am inside signup form</h1> */}
         <div>
             <button>Student</button>
             <button>Instractor</button>
         </div>
-        <form>
+        <form onSubmit={signupHandler}>
         {/* first name & last name */}
            <div>
            <label>
@@ -51,7 +69,7 @@ export default function SignupForm() {
                 <input
                     required
                     type='text'
-                    name='Last_name'
+                    name='last_name'
                     value={formdata.last_name}
                     onChange={inputChange}
                     placeholder='Last Name'
@@ -74,7 +92,7 @@ export default function SignupForm() {
 
          {/* password field */}
         <div>
-         <lebel>
+         <label>
             <p>
             Create Password
                 <sup>*</sup>
@@ -86,31 +104,35 @@ export default function SignupForm() {
                 placeholder='Enter Your Password'
                 onChange={inputChange}
                 value={formdata.password}
+                className='password'
             />
-            <span onClick={() => setPassdata((prev) => !prev)}>
-                {passdata?(<FaEye />):(<FaEyeSlash />)}
+            <span onClick={changepassValue} 
+            className='emoji'>
+                {passdata?(< FaEyeSlash/>):(< FaEye/>)}
             </span>
 
-        </lebel>
+        </label>
         {/* confrom password */}
-        <lebel>
+        <label>
             <p>
             Confirm Password <sup>*</sup>
             </p>
             <input
                 required
-                type={passdata?("text"):("password")}
+                type= {passdata ? ("text") : ("password")}
                 name='confirmpassword'
-                placeholder='Confirm Your Password'
+                placeholder='Confirm Password'
                 onChange={inputChange}
                 value={formdata.confirmpassword}
+                className='password'
             />
-            <span onClick={() => setPassdata((prev) => !prev)}>
-                {passdata?(<FaEye />):(<FaEyeSlash />)}
+            <span onClick={changepassValue}
+            className='emoji'>
+            {passdata?(< FaEyeSlash/>):(< FaEye/>)}
             </span>
         
 
-        </lebel>
+        </label>
         </div>
         <button>Create Account</button>
         </form>

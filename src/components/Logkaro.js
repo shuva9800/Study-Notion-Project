@@ -1,14 +1,19 @@
 import React, { useState } from 'react'
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
-export default function Loginform() {
+
+export default function Loginform({setLogin}) {
+    const navigate=useNavigate();
     const [formData, setformData]=useState({
         email:"",
         password:""
     })
 
+    const[passdata, setPassdata]=useState(false);
     function changeHandler(event) {
     setformData((prevdata)=>({
         ...prevdata,
@@ -16,18 +21,28 @@ export default function Loginform() {
     }) )
     }
 
-    const[passdata, setPassdata]=useState("false")
+   
     function changepassValue(){
-        if(passdata==false){
+        if(passdata===false){
             setPassdata(true)
         }
         else{
             setPassdata(false)
         }
     }
+    function submitHandler(event){
+        event.preventDefault();
+        toast.success("Loge In successful")
+        setLogin(true);
+        console.log("i am inside submit form");
+        
+        navigate("/dashboard");
+
+
+    }
   return (
-   <form>
-     <lebel>
+   <form onSubmit={submitHandler}>
+     <label>
         <p>
             Email Address
             <sup>*</sup>
@@ -40,30 +55,32 @@ export default function Loginform() {
             onChange={changeHandler}
             value={formData.email}
         />
-     </lebel>
+     </label>
 
-     <lebel>
+     <label className='password-label'>
         <p>
            Password
             <sup>*</sup>
         </p>
         <input
             required
-            type='text'
+            type={passdata?("text"):('password')}
             name='password'
             placeholder='Enter Your Password'
             onChange={changeHandler}
             value={formData.password}
+            className='password'
         />
-        <span onClick={() => setPassdata((prev) => !prev)}>
-            {passdata?(<FaEye />):(<FaEyeSlash />)}
+        <span onClick={changepassValue}
+        className='emoji'>
+            {passdata?(< FaEyeSlash />):(<FaEye />)}
         </span>
         <Link to="*">
             <p>Forgot Password</p>
         </Link>
 
-     </lebel>
-     <button>Sign In</button>
+     </label>
+     <button >Sign In</button>
    </form>
   )
 }

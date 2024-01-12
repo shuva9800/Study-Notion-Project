@@ -1,0 +1,56 @@
+*{
+    margin: 1px;
+    padding: 0px;
+}
+.active{
+    background-color: brown;
+}
+.navbar{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.nav-desc{
+    display: flex;
+    gap: 1rem;
+}
+.nav-button{
+    display: flex;
+    gap: 1rem;
+}
+button{
+    outline: 1PX solid green;
+    background:aqua;
+    height: fit-content;
+    color: red;
+}
+input{
+    outline: 1px solid black;
+}
+
+.password-label{
+    width: fit-content;
+}
+.password{
+    position :relative;
+    outline: 1px solid black;
+}
+.emoji{
+    position: absolute;
+    left: 10rem;
+    margin-top: .3rem;
+}
+.component-page{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.image-outlet{
+    position: relative;
+}
+
+.image-outlet :nth-child(1){
+    position: absolute;
+    top: -.5rem;
+    left: -.5rem;
+}

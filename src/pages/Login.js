@@ -8,8 +8,8 @@ export default function Login({setLogin}) {
       title="Wellcome Back"
       desc1="Build skill for today, tomorrow, and beyond."
       desc2="Education to future-proof your career."
+      type="login"
       image={loginImg}
-      fromType="login"
       setLogin={setLogin}
 
     />
