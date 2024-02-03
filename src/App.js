@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import PrivateRoute from "./components/PrivateRoute";
 
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -20,7 +21,11 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/login" element={<Login setLogin={setLogin}/>}/>
         <Route path="/signup" element={<Singup setLogin={setLogin}/>}/>
-        <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route path="/dashboard" element={
+          <PrivateRoute login={login}>
+            <Dashboard/>
+          </PrivateRoute>
+        }/>
         <Route path="/about" element={<About/>}/>
         <Route path="/contact" element={<Contact/>}/>
       </Routes>

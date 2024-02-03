@@ -8,7 +8,7 @@ import { FcGoogle } from "react-icons/fc";
 export default function Commonpart({title,desc1,desc2,formtype,image,setLogin}) {
     return (
 
-    <div className='flex w-10/12 max-w-[1160px] py-12 mx-auto justify-between sd:flex-col-reverse  gap-y-0'>
+    <div className='flex w-10/12 max-w-[1160px] py-12 mx-auto justify-between  sd:flex-col-reverse  gap-y-0'>
         <div className='w-11/12 max-w-[450px]'>
             <h1 className='text-richblack-5 font-semibol text-[1.875rem] leading-[2.375rem] '>{title}</h1>
             <p className=' text-[1.125rem] leading-[1.625rem] mt-4'>
@@ -32,7 +32,7 @@ export default function Commonpart({title,desc1,desc2,formtype,image,setLogin}) 
                 </button>
             </div>
         </div>
-        <div className='relative w-11/12 max-w-[450px]'>
+        <div className='relative w-11/12 max-w-[450px] mt-4'>
         <img src={FrameImage}
                     alt='signup or login img'
                         height={504}

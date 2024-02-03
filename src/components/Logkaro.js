@@ -64,7 +64,7 @@ export default function Loginform({setLogin}) {
             className='bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px]  outline hover:outline-offset-2 outline-cyan-500' 
         />
         <span onClick={()=> (setPassdata(!passdata))}
-        className='absolute left-[37vw] w-full cursor-pointer m-[0.7rem] '>
+        className='absolute left-[39vw] w-full cursor-pointer m-[0.7rem] '>
             {passdata?(< FaEyeSlash fontSize={24} fill='#AFB2BF' />):
             (<FaEye fontSize={24} fill='#AFB2BF' />)}
         </span>
