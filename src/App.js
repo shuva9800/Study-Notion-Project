@@ -13,7 +13,7 @@ import { useState } from "react";
 function App() {
   const [login, setLogin]= useState(false)
   return (
-    <div>
+    <div className="flex  w-screen h-[100%]   bg-richblack-900 flex-col items-center">
       <Navbar login={login} setLogin={setLogin}/>
 
       <Routes>

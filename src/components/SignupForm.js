@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-hot-toast";
+// import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from 'react-router-dom';
 
 
@@ -20,15 +20,9 @@ export default function SignupForm({setLogin}) {
         }))
 
     }
-    const[passdata, setPassdata]=useState(false)
-    function changepassValue(){
-        if(passdata===false){
-            setPassdata(true)
-        }
-        else{
-            setPassdata(false)
-        }
-    }
+    const[passdata, setPassdata]=useState(false);
+    const [confrompassdata, setConfrompassdata]=useState(false);
+    
     function signupHandler(event){
         event.preventDefault();
         if(formdata.password!==formdata.confirmpassword)
@@ -45,16 +39,16 @@ export default function SignupForm({setLogin}) {
     }
   return (
     <div>
-            {/* <h1 style="background=black">i am inside signup form</h1> */}
         <div>
             <button>Student</button>
             <button>Instractor</button>
         </div>
         <form onSubmit={signupHandler}>
         {/* first name & last name */}
-           <div>
-           <label>
-                <p>First Name<sup>*</sup></p>
+           <div className=' flex w-full gap-x-4'>
+           <label className='w-full'>
+                <p className='text-[0.875rem] text-richblack-100 mb-1 loading-[1.375rem] '>First Name
+                <sup className='text-pink-200'>*</sup></p>
                 <input
                     required
                     type='text'
@@ -62,10 +56,12 @@ export default function SignupForm({setLogin}) {
                     value={formdata.first_name}
                     onChange={inputChange}
                     placeholder='First Name'
+                    className='bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px]  outline hover:outline-offset-2 outline-cyan-500'
                 />
             </label>
-            <label>
-                <p>Last Name<sup>*</sup></p>
+            <label className='w-full'>
+                <p className='text-[0.875rem] text-richblack-100 mb-1 loading-[1.375rem] '>Last Name
+                <sup className='text-pink-200'>*</sup></p>
                 <input
                     required
                     type='text'
@@ -73,12 +69,13 @@ export default function SignupForm({setLogin}) {
                     value={formdata.last_name}
                     onChange={inputChange}
                     placeholder='Last Name'
+                    className='bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px]  outline hover:outline-offset-2 outline-cyan-500'
                 />
             </label>
            </div>
 
            {/* email field */}
-           <label>
+           <label className='w-full'>
                 <p>Email Address<sup>*</sup></p>
                 <input
                     required
@@ -87,54 +84,56 @@ export default function SignupForm({setLogin}) {
                     value={formdata.email}
                     onChange={inputChange}
                     placeholder='Enter Your Email'
+                    className='bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px]  outline hover:outline-offset-2 outline-cyan-500'
                 />
              </label>
 
          {/* password field */}
-        <div>
-         <label>
-            <p>
+        <div className='flex w-full gap-x-4 relative'>
+         <label className=' w-full h-auto'>
+            <p className='text-[0.875rem] text-richblack-100 mb-1 loading-[1.375rem] '>
             Create Password
-                <sup>*</sup>
+                <sup className='text-pink-200'>*</sup>
             </p>
             <input
                 required
                 type= {passdata ? ("text") : ("password")}
                 name='password'
-                placeholder='Enter Your Password'
+                placeholder='Enter Password'
                 onChange={inputChange}
                 value={formdata.password}
-                className='password'
+                className='bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px]  outline hover:outline-offset-2 outline-cyan-500'
+
             />
-            <span onClick={changepassValue} 
-            className='emoji'>
-                {passdata?(< FaEyeSlash/>):(< FaEye/>)}
+            <span onClick={()=>(setPassdata(!passdata))} 
+            className='absolute left-[13vw] top-[3vw] cursor-pointer'>
+                {passdata?(< FaEyeSlash fontSize={24} fill='#AFB2BF'/>):(< FaEye fontSize={24} fill='#AFB2BF'/>)}
             </span>
 
         </label>
         {/* confrom password */}
-        <label>
-            <p>
-            Confirm Password <sup>*</sup>
+        <label className='w-full  h-auto'>
+            <p className='text-[0.875rem] text-richblack-100 mb-1 loading-[1.375rem] '>
+            Confirm Password <sup className='text-pink-200'>*</sup>
             </p>
             <input
                 required
-                type= {passdata ? ("text") : ("password")}
+                type= {confrompassdata ? ("text") : ("password")}
                 name='confirmpassword'
                 placeholder='Confirm Password'
                 onChange={inputChange}
                 value={formdata.confirmpassword}
-                className='password'
+                className='bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px]  outline hover:outline-offset-2 outline-cyan-500'
             />
-            <span onClick={changepassValue}
-            className='emoji'>
-            {passdata?(< FaEyeSlash/>):(< FaEye/>)}
+            <span onClick={()=> (setConfrompassdata(!confrompassdata)) }
+            className='absolute  right-[2vw] top-[3vw] cursor-pointer'>
+            {confrompassdata?(< FaEyeSlash fontSize={24} fill='#AFB2BF'/>):(< FaEye fontSize={24} fill='#AFB2BF'/>)}
             </span>
         
 
         </label>
         </div>
-        <button>Create Account</button>
+        <button className='w-full text-richblack-500 bg-yellow-50 rounded-[8px] px-[12px] py-[6px] mt-6'>Create Account</button>
         </form>
     </div>
   )

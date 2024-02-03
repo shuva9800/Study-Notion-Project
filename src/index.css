@@ -1,5 +1,5 @@
 *{
-    margin: 1px;
+    margin: 1px solid red;
     padding: 0px;
 }
 .active{
@@ -18,12 +18,12 @@
     display: flex;
     gap: 1rem;
 }
-button{
+/* button{
     outline: 1PX solid green;
     background:aqua;
     height: fit-content;
     color: red;
-}
+} */
 input{
     outline: 1px solid black;
 }
